@@ -255,7 +255,7 @@
       "item": {
         "item": "treasure2:one_key"
       },
-      "text": "$(l)Rarity:$() $(1)MYTHICAL$()$(br)$(l)Category:$() $(6)MAGICAL$()$(br)$(l)Breakable:$() $(4)No$()$(br)$(l)Craftable:$() $(4)No$()$(br)$(l)Use On:$() $(l)ALL$() locks.",
+      "text": "$(l)Rarity:$() $(1)MYTHICAL$()$(br)$(l)Category:$() $(6)MAGICAL$()$(br)$(l)Breakable:$() $(4)No$()$(br)$(l)Craftable:$() $(4)No$()$(br)$(l)Use On:$() $(l)$(2)ALL$() locks.",
       "anchor": "one_key"
     }
   ]
