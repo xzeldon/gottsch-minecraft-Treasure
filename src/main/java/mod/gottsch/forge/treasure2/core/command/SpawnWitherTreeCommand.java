@@ -117,7 +117,7 @@ public class SpawnWitherTreeCommand {
 				Treasure.LOGGER.warn("unable to locate rarity config for rarity - >{}", rarity);
 				return -1;
 			}
-			
+
 			IFeatureGenerator generator = TreasureFeatureGenerators.WITHER_FEATURE_GENERATOR_SELECTOR.select();
 			Optional<GeneratorResult<ChestGeneratorData>> result = generator.generate(new FeatureGenContext(world, world.getChunkSource().getGenerator(), random, FeatureType.TERRANEAN), new Coords(pos), rarity, rarityConfig.get());
 
