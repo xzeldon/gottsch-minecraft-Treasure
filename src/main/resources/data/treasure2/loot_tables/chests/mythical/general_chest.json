@@ -1,5 +1,5 @@
 {
-  "version" : "4.0.0",
+  "version" : "4.0.1",
   "since" : "mc1.18.2-v.3.0.0",
   "category" : "general",
   "rarity" : "mythical",
@@ -30,7 +30,7 @@
     },
     "entries" : [ {
       "type" : "loot_table",
-      "name" : "treasure2:pools/combat/epic",
+      "name" : "treasure2:pools/combat/mythical",
       "weight" : 1
     } ]
   }, {

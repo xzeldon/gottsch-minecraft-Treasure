@@ -1,5 +1,5 @@
 {
-  "version" : "4.0.0",
+  "version" : "4.0.1",
   "category" : "general",
   "rarity" : "legendary",
   "pools" : [ {
@@ -29,7 +29,7 @@
     },
     "entries" : [ {
       "type" : "loot_table",
-      "name" : "treasure2:pools/combat/epic",
+      "name" : "treasure2:pools/combat/legendary",
       "weight" : 1
     } ]
   }, {

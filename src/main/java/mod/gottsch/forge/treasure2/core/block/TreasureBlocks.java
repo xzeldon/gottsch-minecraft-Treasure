@@ -173,6 +173,11 @@ public class TreasureBlocks {
 	public static final RegistryObject<Block> GRAVESTONE3_SMOOTH_QUARTZ = Registration.BLOCKS.register("gravestone3_smooth_quartz", () -> new GravestoneBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)).setBounds(TreasureShapeBuilder.buildGravestone3()));
 
+	public static final RegistryObject<Block> DEFERRED_RANDOM_VANILLA_SPAWNER = Registration.BLOCKS.register("deferred_random_vanilla_spawner", () -> new DeferredRandomVanillaSpawnerBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+	public static final RegistryObject<Block> DEFERRED_WITHER_TREE_GENERATOR = Registration.BLOCKS.register("deferred_wither_tree_generator", () -> new DeferredWitherTreeGeneratorBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
+			.strength(3.0F).sound(SoundType.STONE)));
+
 	public static final RegistryObject<Block> SKULL_CROSSBONES = Registration.BLOCKS.register("skull_and_crossbones", () -> new GravestoneBlock(Block.Properties.of(Material.STONE, MaterialColor.STONE)
 			.strength(3.0F).sound(SoundType.STONE)).setBounds(TreasureShapeBuilder.buildSkullCrossbones()));
 

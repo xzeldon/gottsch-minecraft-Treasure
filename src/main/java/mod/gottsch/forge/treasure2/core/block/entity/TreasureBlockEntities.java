@@ -90,7 +90,19 @@ public class TreasureBlockEntities {
 						TreasureBlocks.WITHER_SOUL_LOG.get()
 					).build(null));
 	}
-	
+
+	public static final RegistryObject<BlockEntityType<DeferredRandomVanillaSpawnerBlockEntity>> DEFERRED_RANDOM_VANILLA_SPAWNER_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_random_vanilla_spawner",
+					() -> BlockEntityType.Builder.of(DeferredRandomVanillaSpawnerBlockEntity::new,
+									TreasureBlocks.DEFERRED_RANDOM_VANILLA_SPAWNER.get())
+							.build(null));
+
+	public static final RegistryObject<BlockEntityType<DeferredWitherTreeGeneratorBlockEntity>> DEFERRED_WITHER_TREE_GENERATOR_ENTITY_TYPE =
+			Registration.BLOCK_ENTITIES.register("deferred_wither_tree_generator",
+					() -> BlockEntityType.Builder.of(DeferredWitherTreeGeneratorBlockEntity::new,
+									TreasureBlocks.DEFERRED_WITHER_TREE_GENERATOR.get())
+							.build(null));
+
 	public static void register() {
 		// cycle through all block and create items
 		Registration.registerBlockEntities();

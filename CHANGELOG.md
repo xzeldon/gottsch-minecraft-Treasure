@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.0] - 2024-04-21
+
+### Changed
+
+- Fixed generation crashes.
+- Fixed structure alignments.
+- Fixed legendary and mythical loot tables to include the correct weapon sets.
+
+### Added
+
+- Deferred Random Vanilla Spawner generation classes.
+- Deferred Wither Tree generation classes.
+- GeometryUtil class.
+
 ## [3.7.1] - 2024-01-25
 
 ### Changed

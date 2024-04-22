@@ -58,28 +58,40 @@ public interface ITemplateGenerator<RESULT extends IGeneratorResult<?>> {
 	 * @param placement
 	 * @return
 	 */
-	public static ICoords alignEntranceToCoords(ICoords coords, ICoords entranceCoords, BlockPos size, PlacementSettings placement) {
-		ICoords startCoords = null;
-		// NOTE work with rotations only for now
-		
+//	public static ICoords alignEntranceToCoords(ICoords coords, ICoords entranceCoords, BlockPos size, PlacementSettings placement) {
+//		ICoords startCoords = null;
+//		// NOTE work with rotations only for now
+//
+//		// first offset coords by entrance
+//		startCoords = coords.add(-entranceCoords.getX(), 0, -entranceCoords.getZ());
+//
+//		// make adjustments for the rotation. REMEMBER that pits are 2x2
+//		switch (placement.getRotation()) {
+//		case CLOCKWISE_90:
+//			startCoords = startCoords.add(1, 0, 0);
+//			break;
+//		case CLOCKWISE_180:
+//			startCoords = startCoords.add(1, 0, 1);
+//			break;
+//		case COUNTERCLOCKWISE_90:
+//			startCoords = startCoords.add(0, 0, 1);
+//			break;
+//		default:
+//			break;
+//		}
+//		return startCoords;
+//	}
+	public static ICoords alignEntranceToCoords(ICoords coords, ICoords entranceCoords) {
+//		ICoords startCoords = null;
+		// NOTE this alignment works differently than  surface structure align - that is taking in the SIZE
+		// of the rotated structure. This method takes in an offset coords of the rotated structure
+
+		// NOTE this method is using a offset from the spawnpoint. so the rotation doesn't matter,
+		// it will always be a subtraction from the spawn coords. ie .add(-c) or .subtract(c)
+
+		// TODO this line is wrong - it only takes into account 1 rotation (90cw) - this is conflicting with the Notes above that state rotation doesn't matter
 		// first offset coords by entrance
-		startCoords = coords.add(-entranceCoords.getX(), 0, -entranceCoords.getZ());
-		
-		// make adjustments for the rotation. REMEMBER that pits are 2x2
-		switch (placement.getRotation()) {
-		case CLOCKWISE_90:
-			startCoords = startCoords.add(1, 0, 0);
-			break;
-		case CLOCKWISE_180:
-			startCoords = startCoords.add(1, 0, 1);
-			break;
-		case COUNTERCLOCKWISE_90:
-			startCoords = startCoords.add(0, 0, 1);
-			break;
-		default:
-			break;
-		}
-		return startCoords;
+		return coords.add(-entranceCoords.getX(), 0, -entranceCoords.getZ());
 	}
 	
 	public Block getNullBlock();
