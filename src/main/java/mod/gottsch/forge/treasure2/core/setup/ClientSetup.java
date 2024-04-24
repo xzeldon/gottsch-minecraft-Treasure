@@ -168,6 +168,7 @@ public class ClientSetup {
 		event.registerEntityRenderer(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), CrateChestMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimicRenderer::new);
 		event.registerEntityRenderer(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimicRenderer::new);
+		event.registerEntityRenderer(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimicRenderer::new);
 
 	}
 	
@@ -200,6 +201,7 @@ public class ClientSetup {
 		event.registerLayerDefinition(CrateChestMimicModel.LAYER_LOCATION, CrateChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(MoldyCrateChestMimicModel.LAYER_LOCATION, MoldyCrateChestMimicModel::createBodyLayer);
 		event.registerLayerDefinition(CardboardBoxMimicModel.LAYER_LOCATION, CardboardBoxMimicModel::createBodyLayer);
+		event.registerLayerDefinition(MilkCrateMimicModel.LAYER_LOCATION, MilkCrateMimicModel::createBodyLayer);
 
 	}
 
