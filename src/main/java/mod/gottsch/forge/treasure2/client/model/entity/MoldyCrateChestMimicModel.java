@@ -139,10 +139,9 @@ public class MoldyCrateChestMimicModel<T extends Entity> extends EntityModel<T> 
 			
 			// chomp lid
 			if (mimic.hasTarget()) {
-				lid.xRot = -degToRad(mimic.getAmount() * 45);
+				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
 			} else {
-//				lid.xRot = -degToRad(22.5f);
-				bobMouth(lid, 22.5f, 25f, ageInTicks);
+				bobMouth(lid, 22.5f, 3f, ageInTicks);
 			}
 			eye1.xRot = -1.003564F;
 			eyeSocket.xRot = -0.174533F;
@@ -167,7 +166,7 @@ public class MoldyCrateChestMimicModel<T extends Entity> extends EntityModel<T> 
 	}
 	
 	public static void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * 3f));
+		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * maxRot));
 	}
 	
 	@Override

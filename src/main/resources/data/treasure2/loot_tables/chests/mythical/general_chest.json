@@ -30,7 +30,7 @@
     },
     "entries" : [ {
       "type" : "loot_table",
-      "name" : "treasure2:pools/combat/epic",
+      "name" : "treasure2:pools/combat/mythical",
       "weight" : 1
     } ]
   }, {

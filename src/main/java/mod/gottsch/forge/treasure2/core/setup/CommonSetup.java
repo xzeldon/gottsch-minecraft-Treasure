@@ -242,7 +242,8 @@ public class CommonSetup {
 		TreasureApi.registerRarityTags(SpecialRarity.GOLD_SKULL, TreasureTags.Blocks.GOLD_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.CRYSTAL_SKULL, TreasureTags.Blocks.CRYSTAL_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.WITHER, TreasureTags.Blocks.WITHER_CHESTS);
-		
+		TreasureApi.registerRarityTags(SpecialRarity.CAULDRON, TreasureTags.Blocks.CAULDRON_CHESTS);
+
 		/*
 		 *  regsiter and map wishable tags to their rarity.
 		 *  these are the allowable rarity grouping of wishable items.
@@ -331,6 +332,7 @@ public class CommonSetup {
 		TreasureApi.registerMimic(TreasureBlocks.CRATE_CHEST.getId(), TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.MOLDY_CRATE_CHEST.getId(), TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.CARDBOARD_BOX.getId(), TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.getId());
+		TreasureApi.registerMimic(TreasureBlocks.MILK_CRATE.getId(), TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.getId());
 
 		/*
 		 *  register wishable handlers
@@ -450,11 +452,12 @@ public class CommonSetup {
 		event.put(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), CrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimic.createAttributes().build());
-
+		event.put(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimic.createAttributes().build());
 	}
 
 	@SubscribeEvent
-	public static void registerEntitySpawn(SpawnPlacementRegisterEvent event) {
+	public static void registerEntitySpawn(
+			SpawnPlacementRegisterEvent event) {
 		// these registers don't actual spawn anything. these are the rules if & when a mob is spawned.
 		// to actually enable the spawning of a mob, the entity has to be registered to a biome(s).
 		event.register(TreasureEntities.BOUND_SOUL_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
@@ -465,6 +468,7 @@ public class CommonSetup {
 		event.register(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+		event.register(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 
 	}
 }
