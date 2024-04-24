@@ -181,11 +181,10 @@ public class CauldronChestMimicModel<T extends Entity> extends EntityModel<T> {
 			
 			// chomp lid
 			if (mimic.hasTarget()) {
-				lid.xRot = mimic.getAmount() * -0.7854F; // TODO could use sin or cos method like legs
+				bobMouth(lid, 22.5f, 22.5f, ageInTicks);
 			}
 			else {
-//				lid.xRot = -degToRad(22.5f);
-				bobMouth(lid, 22.5f, 25f, ageInTicks);
+				bobMouth(lid, 22.5f, 3f, ageInTicks);
 			}
 			rightLid.zRot = -2.26893F; //130
 			leftLid.zRot = -rightLid.zRot;
@@ -238,7 +237,7 @@ public class CauldronChestMimicModel<T extends Entity> extends EntityModel<T> {
 	}
 	
 	public static void bobMouth(ModelPart mouth, float originRot, float maxRot, float age) {
-		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * 3f));
+		mouth.xRot = -(degToRad(originRot + Mth.cos(age * 0.25f) * maxRot));
 	}
 	
 	@Override

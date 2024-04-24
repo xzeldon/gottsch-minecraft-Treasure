@@ -8,7 +8,12 @@
     {
       "type": "patchouli:text",
       "title": "Chest List",
-      "text": "$(l)$(l:chests#wood_chest)Wood Chest$(/l)$()$(br)$(l)$(l:chests#crate_chest)Crate Chest$(/l)$()$(br)$(l)$(l:chests#crate_chest_moldy)Moldy Crate Chest$(/l)$()$(br)$(l)$(l:chests#ironbound_chest)Ironbound Chest$(/l)$()$(br)$(l)$(l:chests#pirate_chest)Pirate Chest$(/l)$()$(br)$(l)$(l:chests#safe)Safe$(/l)$()$(br)$(l)$(l:chests#iron_strongbox)Iron Strongbox$(/l)$()$(br)$(l)$(l:chests#gold_strongbox)Gold Strongbox$(/l)$()$(br)$(l)$(l:chests#dread_pirate_chest)Dread Pirate Chest$(/l)$()$(br)$(l)$(l:chests#compressor_chest)Compressor Chest$(/l)$()$(br)$(l)$(l:chests#skull_chest)Skull Chest$(/l)$()$(br)$(l)$(l:chests#gold_skull_chest)Gold Skull Chest$(/l)$()$(br)$(l)$(l:chests#crystal_skull_chest)Crystal Skull Chest$(/l)$()$(br)$(l)$(l:chests#cauldron_chest)Cauldron Chest$(/l)$()$(br)$(l)$(l:chests#spider_chest)Spider Chest$(/l)$()$(br)$(l)$(l:chests#viking_chest)Viking Chest$(/l)$()$(br)"
+      "text": "$(l)$(l:chests#wood_chest)Wood Chest$(/l)$()$(br)$(l)$(l:chests#crate_chest)Crate Chest$(/l)$()$(br)$(l)$(l:chests#crate_chest_moldy)Moldy Crate Chest$(/l)$()$(br)$(l)$(l:chests#ironbound_chest)Ironbound Chest$(/l)$()$(br)$(l)$(l:chests#pirate_chest)Pirate Chest$(/l)$()$(br)$(l)$(l:chests#safe)Safe$(/l)$()$(br)$(l)$(l:chests#iron_strongbox)Iron Strongbox$(/l)$()$(br)$(l)$(l:chests#gold_strongbox)Gold Strongbox$(/l)$()$(br)$(l)$(l:chests#dread_pirate_chest)Dread Pirate Chest$(/l)$()$(br)$(l)$(l:chests#compressor_chest)Compressor Chest$(/l)$()$(br)$(l)$(l:chests#skull_chest)Skull Chest$(/l)$()$(br)$(l)$(l:chests#gold_skull_chest)Gold Skull Chest$(/l)$()$(br)$(l)$(l:chests#crystal_skull_chest)Crystal Skull Chest$(/l)$()$(br)$(l)$(l:chests#cauldron_chest)Cauldron Chest$(/l)$()"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Chest List",
+      "text": "$(l)$(l:chests#spider_chest)Spider Chest$(/l)$()$(br)$(l)$(l:chests#viking_chest)Viking Chest$(/l)$()$(br)$(l)$(l:chests#cardboard_box)Cardboard Box$(/l)$()$(br)$(l)$(l:chests#milk_crate)Milk Crate$(/l)$()$(br)$(l)$(l:chests#wither_chest)Wither Chest$(/l)$()"
     },
     {
       "type": "patchouli:spotlight",
