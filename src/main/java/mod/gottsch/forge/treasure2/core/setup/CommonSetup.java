@@ -22,14 +22,7 @@ import mod.gottsch.forge.treasure2.api.TreasureApi;
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.entity.TreasureEntities;
-import mod.gottsch.forge.treasure2.core.entity.monster.BoundSoul;
-import mod.gottsch.forge.treasure2.core.entity.monster.CardboardBoxMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.CauldronChestMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.CrateChestMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.MoldyCrateChestMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.PirateChestMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.VikingChestMimic;
-import mod.gottsch.forge.treasure2.core.entity.monster.WoodChestMimic;
+import mod.gottsch.forge.treasure2.core.entity.monster.*;
 import mod.gottsch.forge.treasure2.core.enums.LootTableType;
 import mod.gottsch.forge.treasure2.core.enums.MarkerType;
 import mod.gottsch.forge.treasure2.core.enums.PitType;
@@ -245,7 +238,8 @@ public class CommonSetup {
 		TreasureApi.registerRarityTags(SpecialRarity.GOLD_SKULL, TreasureTags.Blocks.GOLD_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.CRYSTAL_SKULL, TreasureTags.Blocks.CRYSTAL_SKULL_CHESTS);
 		TreasureApi.registerRarityTags(SpecialRarity.WITHER, TreasureTags.Blocks.WITHER_CHESTS);
-		
+		TreasureApi.registerRarityTags(SpecialRarity.CAULDRON, TreasureTags.Blocks.CAULDRON_CHESTS);
+
 		/*
 		 *  regsiter and map wishable tags to their rarity.
 		 *  these are the allowable rarity grouping of wishable items.
@@ -334,7 +328,8 @@ public class CommonSetup {
 		TreasureApi.registerMimic(TreasureBlocks.CRATE_CHEST.getId(), TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.MOLDY_CRATE_CHEST.getId(), TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.getId());
 		TreasureApi.registerMimic(TreasureBlocks.CARDBOARD_BOX.getId(), TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.getId());
-		
+		TreasureApi.registerMimic(TreasureBlocks.MILK_CRATE.getId(), TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.getId());
+
 		/*
 		 *  register wishable handlers
 		 *  NOTE assigning an item to DEFAULT_WISHABLE_HANDLER is redundant an unnecassary
@@ -443,6 +438,7 @@ public class CommonSetup {
 		event.put(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), CrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), MoldyCrateChestMimic.createAttributes().build());
 		event.put(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), CardboardBoxMimic.createAttributes().build());
+		event.put(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), MilkCrateMimic.createAttributes().build());
 	}
 
 	@SubscribeEvent
@@ -457,6 +453,7 @@ public class CommonSetup {
 		event.register(TreasureEntities.CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.MOLDY_CRATE_CHEST_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
 		event.register(TreasureEntities.CARDBOARD_BOX_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
-		
+		event.register(TreasureEntities.MILK_CRATE_MIMIC_ENTITY_TYPE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+
 	}
 }

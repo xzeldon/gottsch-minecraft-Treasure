@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "g": {
       "item": "minecraft:gold_ingot"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "treasure2:gold_skull_chest"
-  }
+  },
+  "show_notification": true
 }

@@ -28,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -97,6 +98,11 @@ public class WitherChestBlock extends StandardChestBlock {
 	}
 
 	@Override
+	public void destroy(LevelAccessor p_49860_, BlockPos p_49861_, BlockState p_49862_) {
+		super.destroy(p_49860_, p_49861_, p_49862_);
+	}
+
+	@Override
 	public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest,
 			FluidState fluid) {
 
@@ -123,17 +129,4 @@ public class WitherChestBlock extends StandardChestBlock {
 		
 		super.onBlockExploded(state, level, pos, explosion);
 	}
-
-//	@Override
-//	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-//		// destory placeholder above
-//		BlockPos upPos = pos.above();
-//		Block topBlock = level.getBlockState(upPos).getBlock();
-//		if (topBlock == TreasureBlocks.WITHER_CHEST_TOP.get()) {
-//			Block.updateOrDestroy(level.getBlockState(upPos), Blocks.AIR.defaultBlockState(), level, upPos, 3);
-//		}
-//		// break as normal
-//		super.destroy(level, pos, state);
-//	}
-
 }

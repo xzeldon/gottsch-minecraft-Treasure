@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "s": {
       "item": "minecraft:polished_granite"
@@ -15,5 +16,6 @@
   ],
   "result": {
     "item": "treasure2:gravestone3_polished_granite"
-  }
+  },
+  "show_notification": true
 }
