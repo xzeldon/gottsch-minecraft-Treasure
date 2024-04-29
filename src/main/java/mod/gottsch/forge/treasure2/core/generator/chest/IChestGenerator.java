@@ -323,13 +323,11 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * @param level
 	 * @param random
 	 * @param blockEntity
-	 * @param lootRarity
 	 */
 	default public void fillChest(final Level level, RandomSource random, final BlockEntity blockEntity, final IRarity rarity, Player player) {
-		if (!(blockEntity instanceof AbstractTreasureChestBlockEntity)) {
+		if (!(blockEntity instanceof AbstractTreasureChestBlockEntity chestBlockEntity)) {
 			return;
 		}
-		AbstractTreasureChestBlockEntity chestBlockEntity = (AbstractTreasureChestBlockEntity)blockEntity;
 
 		ResourceLocation lootTableResourceLocation = chestBlockEntity.getLootTable();
 		Treasure.LOGGER.debug("chest has loot table property of -> {}", lootTableResourceLocation);
@@ -449,10 +447,12 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 		IItemHandler itemHandler = chestBlockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null);
 		if (itemHandler != null) {
 			ItemStackHandler inventory = (ItemStackHandler)itemHandler;
+			int inventorySize = inventory.getSlots();
 
 			// add the treasure items to the chest
 			Random rand = new Random();
 			Collections.shuffle(treasureStacks, rand);
+			// TODO divide treasure items into 2 lists. 1 for original size and remainder
 			fillInventory(inventory, random, treasureStacks.stream().limit(treasureLootItemSize).collect(Collectors.toList()));
 
 			// add a treasure map if there is still space
@@ -462,6 +462,7 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 			Collections.shuffle(itemStacks, rand);		
 			// fill the chest with items
 			fillInventory(inventory, random, itemStacks.stream().limit(lootItemSize).collect(Collectors.toList()));
+			// TODO determine if there are any empty slots still and use all the remainder items to fill the chest completely.
 		}
 	}
 
@@ -615,7 +616,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * 
 	 * @param inventory
 	 * @param random
-	 * @param context
 	 */
 	default public void fillInventory(ItemStackHandler inventory, RandomSource random, List<ItemStack> list) {
 		List<Integer> emptySlots = getEmptySlotsRandomized(inventory, random);
@@ -749,9 +749,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 	 * TODO refactor out into it's own selectable generators
 	 * Wrapper method so that is can be overridden (as used in the Template Pattern)
 	 * 
-	 * @param world
-	 * @param random
-	 * @param coods
 	 */
 	@Deprecated
 	default public void addMarkers(IWorldGenContext context, ICoords coords, final boolean isSurfaceChest) {
@@ -766,8 +763,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 
 	/**
 	 * 
-	 * @param level
-	 * @param random
 	 * @param chest
 	 * @param chestCoords
 	 * @return
@@ -804,8 +799,6 @@ public interface IChestGenerator extends IChestGeneratorEffects {
 
 	/**
 	 * 
-	 * @param level
-	 * @param random
 	 * @param chestCoords
 	 * @param chest
 	 * @param state

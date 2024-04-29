@@ -40,6 +40,14 @@ import net.minecraft.world.level.Level;
  *
  */
 public class ThiefsLockPick extends KeyItem {
+	/*
+	 * The probability of a successful unlocking uncommon locks
+	 */
+	private double uncommonSuccessProbability;
+	/*
+	 * The probability of a successful unlocking scarce locks
+	 */
+	private double scarceSuccessProbability;
 
 	/**
 	 * 
@@ -106,18 +114,43 @@ public class ThiefsLockPick extends KeyItem {
 				}
 			}
 			else if (lockItem.getRarity() == Rarity.UNCOMMON) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability() - (this.getSuccessProbability()/4))) {
+				if (RandomHelper.checkProbability(new Random(), this.getUncommonSuccessProbability())) {
 					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				
 			}
 			else if (lockItem.getRarity() == Rarity.SCARCE) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability()/2)) {
+				if (RandomHelper.checkProbability(new Random(), this.getScarceSuccessProbability())) {
 					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				
 			}		
 		}
 		return false;
+	}
+
+
+	public ThiefsLockPick setSuccessProbability(double commonProbability, double uncommonProbability, double scarceProbability) {
+		setSuccessProbability(commonProbability);
+		setUncommonSuccessProbability(uncommonProbability);
+		setScarceSuccessProbability(scarceProbability);
+
+		return this;
+	}
+
+	public double getUncommonSuccessProbability() {
+		return uncommonSuccessProbability;
+	}
+
+	public void setUncommonSuccessProbability(double uncommonSuccessProbability) {
+		this.uncommonSuccessProbability = uncommonSuccessProbability;
+	}
+
+	public double getScarceSuccessProbability() {
+		return scarceSuccessProbability;
+	}
+
+	public void setScarceSuccessProbability(double scarceSuccessProbability) {
+		this.scarceSuccessProbability = scarceSuccessProbability;
 	}
 }

@@ -105,6 +105,7 @@ public class TreasureTags {
 		public static final TagKey<Block> GOLD_SKULL_CHESTS = mod(Treasure.MODID, "chests/rarity/special/gold_skull");
 		public static final TagKey<Block> CRYSTAL_SKULL_CHESTS = mod(Treasure.MODID, "chests/rarity/special/crystal_skull");
 		public static final TagKey<Block> WITHER_CHESTS = mod(Treasure.MODID, "chests/rarity/special/wither");
+		public static final TagKey<Block> CAULDRON_CHESTS = mod(Treasure.MODID, "chests/rarity/special/cauldron");
 
 		public static TagKey<Block> mod(String domain, String path) {
 			return BlockTags.create(new ResourceLocation(domain, path));
