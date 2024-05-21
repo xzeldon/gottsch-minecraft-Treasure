@@ -54,14 +54,19 @@ public class ThiefsLockPick extends KeyItem {
 	 * @param properties
 	 */
 	public ThiefsLockPick(Item.Properties properties) {
-		super(properties);
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	public ThiefsLockPick(Item.Properties properties, int durability) {
+		super(properties, durability);
+
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			IRarity rarity = KeyLockRegistry.getRarityByLock(lock);
-			return 
+			return
 					(rarity == Rarity.COMMON ||
-					rarity == Rarity.UNCOMMON ||
-					rarity == Rarity.SCARCE);
+							rarity == Rarity.UNCOMMON ||
+							rarity == Rarity.SCARCE);
 		});
 	}
 
@@ -114,13 +119,13 @@ public class ThiefsLockPick extends KeyItem {
 				}
 			}
 			else if (lockItem.getRarity() == Rarity.UNCOMMON) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability() - (this.getSuccessProbability()/4))) {
+				if (RandomHelper.checkProbability(new Random(), this.getUncommonSuccessProbability())) {
 					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				
 			}
 			else if (lockItem.getRarity() == Rarity.SCARCE) {
-				if (RandomHelper.checkProbability(new Random(), this.getSuccessProbability()/2)) {
+				if (RandomHelper.checkProbability(new Random(), this.getScarceSuccessProbability())) {
 					Treasure.LOGGER.debug("Unlock attempt met probability");
 					return true;
 				}				

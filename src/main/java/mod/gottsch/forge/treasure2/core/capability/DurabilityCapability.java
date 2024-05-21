@@ -42,6 +42,7 @@ public class DurabilityCapability implements ICapabilitySerializable<CompoundTag
 	public DurabilityCapability() {
 		handler  = new DurabilityHandler();
 	}
+
 	public DurabilityCapability(IDurabilityHandler handler) {
 		this.handler = handler;
 	}

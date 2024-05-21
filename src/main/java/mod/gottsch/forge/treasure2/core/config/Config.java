@@ -307,6 +307,10 @@ public class Config extends AbstractConfig {
 						.comment(" The maximum uses for a given gold key.")
 						.defineInRange("goldKeyMaxUses", 15, 1, 32000);
 
+				metallurgistsKeyMaxUses = builder
+						.comment(" The maximum uses for a given metallurgists key.")
+						.defineInRange("metallurgistsKeyMaxUses", 25, 1, 32000);
+
 				diamondKeyMaxUses = builder
 						.comment(" The maximum uses for a given diamond key.")
 						.defineInRange("diamondKeyMaxUses", 20, 1, 32000);
@@ -330,10 +334,6 @@ public class Config extends AbstractConfig {
 				sapphireKeyMaxUses = builder
 						.comment(" The maximum uses for a given sapphire key.")
 						.defineInRange("sapphireKeyMaxUses", 5, 1, 32000);
-
-				metallurgistsKeyMaxUses = builder
-						.comment(" The maximum uses for a given metallurgists key.")
-						.defineInRange("metallurgistsKeyMaxUses", 25, 1, 32000);
 
 				skeletonKeyMaxUses = builder
 						.comment(" The maximum uses for a given skeleton key.")

@@ -93,7 +93,7 @@ public class CommonSetup {
 		// create a treasure2 specific log file
 		Config.instance.addRollingFileAppender(Treasure.MODID);
 		Treasure.LOGGER.debug("file appender created");
-				
+
 		/**
 		 * Most resources in Treasure2 are associated with a Rarity. Register rarities
 		 * to enable them in other features. The registry in conjunction with
@@ -336,7 +336,7 @@ public class CommonSetup {
 
 		/*
 		 *  register wishable handlers
-		 *  NOTE assigning an item to DEFAULT_WISHABLE_HANDLER is redundant an unnecassary
+		 *  NOTE assigning an item to DEFAULT_WISHABLE_HANDLER is redundant and unnecessary
 		 *   since the default will be assigned if a handler cannot be found. The item, however, must be
 		 *   added to one of the wishable tags.
 		 *   The below assignment/registration is an example.

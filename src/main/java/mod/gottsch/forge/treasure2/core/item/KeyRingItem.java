@@ -177,7 +177,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 									// so k3 = (10/20d) ie 1 key's worth damage was applied.
 									int damage = keyStack.getDamageValue() + (keyStack.getMaxDamage() - (keyStack.getDamageValue() % keyStack.getMaxDamage()));
 									keyStack.setDamageValue(damage);
-									if (keyStack.getDamageValue() >= cap.getDurability()) {
+									if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 										// break key;
 										keyStack.shrink(1);
 									}								
@@ -196,7 +196,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 							}
 							if (!context.getPlayer().isCreative() && key.isDamageable(keyStack) && !isKeyBroken) {
 								keyStack.setDamageValue(keyStack.getDamageValue() + 1);
-								if (keyStack.getDamageValue() >= cap.getDurability()) {
+								if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 									keyStack.shrink(1);
 								}
 							}
