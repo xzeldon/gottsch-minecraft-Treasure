@@ -1,19 +1,8 @@
 package mod.gottsch.forge.treasure2;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Optional;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.electronwill.nightconfig.core.CommentedConfig;
-
 import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
 import mod.gottsch.forge.treasure2.core.block.entity.TreasureBlockEntities;
-import mod.gottsch.forge.treasure2.core.cache.FeatureCaches;
 import mod.gottsch.forge.treasure2.core.config.Config;
 import mod.gottsch.forge.treasure2.core.config.StructureConfiguration;
 import mod.gottsch.forge.treasure2.core.entity.TreasureEntities;
@@ -22,13 +11,9 @@ import mod.gottsch.forge.treasure2.core.item.TreasureCreativeModeTabs;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.loot.modifier.TreasureLootModifiers;
 import mod.gottsch.forge.treasure2.core.particle.TreasureParticles;
-import mod.gottsch.forge.treasure2.core.registry.DimensionalGeneratedCache;
-import mod.gottsch.forge.treasure2.core.registry.RarityLevelWeightedChestGeneratorRegistry;
-import mod.gottsch.forge.treasure2.core.registry.TreasureTemplateRegistry;
 import mod.gottsch.forge.treasure2.core.setup.ClientSetup;
 import mod.gottsch.forge.treasure2.core.setup.CommonSetup;
 import mod.gottsch.forge.treasure2.core.sound.TreasureSounds;
-import mod.gottsch.forge.treasure2.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.world.feature.TreasureConfiguredFeatures;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -41,6 +26,14 @@ import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * 
@@ -151,6 +144,7 @@ public class Treasure {
 				}
 				else if (spec == Config.SERVER_SPEC) {
 //					FeatureCaches.initialize();
+					// TODO could load the KEY_
 				}
 			}
 		}

@@ -28,6 +28,7 @@ import mod.gottsch.forge.treasure2.core.registry.KeyLockRegistry;
 import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.inventory.ItemCombinerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -49,13 +50,17 @@ public class PilferersLockPick extends KeyItem {
 	 * @param properties
 	 */
 	public PilferersLockPick(Item.Properties properties) {
-		super(properties);
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	public PilferersLockPick(Item.Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			IRarity rarity = KeyLockRegistry.getRarityByLock(lock);
-			return 
+			return
 					(rarity == Rarity.COMMON ||
-					rarity == Rarity.UNCOMMON);
+							rarity == Rarity.UNCOMMON);
 		});
 	}
 	

@@ -60,8 +60,8 @@ public class AnvilEventHandler {
 				event.setCost(1);
 				LazyOptional<IDurabilityHandler> leftHandler = leftStack.getCapability(DURABILITY);
 				LazyOptional<IDurabilityHandler> rightHandler = rightStack.getCapability(DURABILITY);
-				int leftDurability = leftHandler.map(c -> c.getDurability()).orElse(leftStack.getMaxDamage());
-				int rightDurability = rightHandler.map(c -> c.getDurability()).orElse(rightStack.getMaxDamage());
+				int leftDurability = leftHandler.map(c -> c.durability(leftStack.getItem())).orElse(((KeyItem) leftStack.getItem()).getDurability());
+				int rightDurability = rightHandler.map(c -> c.durability(rightStack.getItem())).orElse(((KeyItem) rightStack.getItem()).getDurability());
 
 				int leftRemainingUses = leftDurability - leftStack.getDamageValue();
 				int rightRemainingUses = rightDurability - rightStack.getDamageValue();
@@ -85,7 +85,7 @@ public class AnvilEventHandler {
 					else {
 						outputHandler.ifPresent(cap -> cap.setDurability(Math.max(leftDurability, rightDurability)));
 					}
-					outputStack.setDamageValue(outputHandler.map(c -> c.getDurability()).orElse(leftStack.getMaxDamage()) - remainingUses);
+					outputStack.setDamageValue(outputHandler.map(c -> c.durability(leftStack.getItem())).orElse(((KeyItem)leftStack.getItem()).getDurability()) - remainingUses);
 				}
 				event.setOutput(outputStack);
 			}

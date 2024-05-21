@@ -34,12 +34,16 @@ import net.minecraft.world.level.Level;
  */
 public class LightningKey extends KeyItem {
 
+	public LightningKey(Item.Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
 	/**
 	 * 
 	 * @param properties
 	 */
-	public LightningKey(Item.Properties properties) {
-		super(properties);
+	public LightningKey(Item.Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			return lock.getCategory() == KeyLockCategory.ELEMENTAL;
