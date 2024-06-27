@@ -617,6 +617,8 @@ public class KeyItem extends Item implements IKeyEffects {
 	 * @return the damageable
 	 */
 	public boolean isDamageable(ItemStack stack) {
+		// TODO ensure that stack != null -some mod is using mixins on this function
+		// and the stack could possibly be null
 		IDurabilityHandler handler = stack.getCapability(TreasureCapabilities.DURABILITY).map(h -> h).orElse(null);
 		if (handler != null) {
 			return !handler.isInfinite();
