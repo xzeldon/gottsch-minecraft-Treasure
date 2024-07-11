@@ -663,7 +663,7 @@ public class Config extends AbstractConfig {
 		// create the chest config map
 //		chestConfigMap = Maps.newHashMap();
 //		chestConfigs.forEach(config -> {
-//			config.getDimensions().forEach(dimension -> {
+//			conf.forEach(dimension -> {
 //				chestConfigMap.put(ModUtil.asLocation(dimension), config);
 //			});
 //		});
