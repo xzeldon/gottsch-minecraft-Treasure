@@ -65,27 +65,23 @@ public class TreasureItems {
 	public static RegistryObject<Item> TREASURE_TOOL = Registration.ITEMS.register("treasure_tool", () -> new TreasureToolItem(TREASURE_PROPS_SUPPLIER.get()));
 
 	// keys
-	public static RegistryObject<KeyItem> WOOD_KEY = Registration.ITEMS.register("wood_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.woodKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+	public static RegistryObject<KeyItem> WOOD_KEY = Registration.ITEMS.register("wood_key",
+					() -> new KeyItem(new Item.Properties().tab(TREASURE_ITEM_GROUP), 20)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> STONE_KEY = Registration.ITEMS.register("stone_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.stoneKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> LEAF_KEY = Registration.ITEMS.register("leaf_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.leafKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 15)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> EMBER_KEY = Registration.ITEMS.register("ember_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.emberKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 15)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setCraftable(false)
 			.addFitsLock(lock -> {
@@ -101,93 +97,80 @@ public class TreasureItems {
 
 	public static RegistryObject<KeyItem> LIGHTNING_KEY = Registration.ITEMS.register("lightning_key", () -> new LightningKey(
 			new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.lightningKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setBreakable(false)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> IRON_KEY = Registration.ITEMS.register("iron_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.ironKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.METALS)
 			.setCraftable(false));
 
-	public static RegistryObject<KeyItem> GOLD_KEY = Registration.ITEMS.register("gold_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.goldKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+	public static RegistryObject<KeyItem> GOLD_KEY = Registration.ITEMS.register("gold_key",
+					() -> new KeyItem(new Item.Properties().tab(TREASURE_ITEM_GROUP), 15)
 			.setCategory(KeyLockCategory.METALS)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> METALLURGISTS_KEY = Registration.ITEMS.register("metallurgists_key", () -> new MetallurgistsKey(
 			new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.metallurgistsKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 25)
 			.setCategory(KeyLockCategory.METALS)
 			.setBreakable(false)
 			.setCraftable(false));
 	
 	public static RegistryObject<KeyItem> DIAMOND_KEY = Registration.ITEMS.register("diamond_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.diamondKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 20)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> EMERALD_KEY = Registration.ITEMS.register("emerald_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.emeraldKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> TOPAZ_KEY = Registration.ITEMS.register("topaz_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.topazKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 7)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(true));
 	
 	public static RegistryObject<KeyItem> ONYX_KEY = Registration.ITEMS.register("onyx_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.onyxKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 7)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(true));
 	
 	public static RegistryObject<KeyItem> RUBY_KEY = Registration.ITEMS.register("ruby_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.rubyKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(true));
 
 	public static RegistryObject<KeyItem> SAPPHIRE_KEY = Registration.ITEMS.register("sapphire_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.sapphireKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(true));
 
 	public static RegistryObject<KeyItem> JEWELLED_KEY = Registration.ITEMS.register("jewelled_key", 
 			() -> new JewelledKey(new Item.Properties()
-//					.durability(Config.SERVER.keysAndLocks.jewelledKeyMaxUses.get())
-					.tab(TREASURE_ITEM_GROUP))
+					.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.GEMS)
 			.setBreakable(false)
 			.setCraftable(false));
 
 
 	public static RegistryObject<KeyItem> SPIDER_KEY = Registration.ITEMS.register("spider_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.spiderKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.MOB)
 			.setBreakable(true)
 			.setCraftable(true));
 
 	public static RegistryObject<KeyItem> WITHER_KEY = Registration.ITEMS.register("wither_key", () -> new KeyItem(new Item.Properties()
-//			.durability(Config.SERVER.keysAndLocks.witherKeyMaxUses.get())
-			.tab(TREASURE_ITEM_GROUP))
+			.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.WITHER)
 			.setBreakable(false)
 			.setCraftable(true));
@@ -195,16 +178,14 @@ public class TreasureItems {
 
 	public static RegistryObject<KeyItem> SKELETON_KEY = Registration.ITEMS.register("skeleton_key", 
 			() -> new SkeletonKey(new Item.Properties()
-//					.durability(Config.SERVER.keysAndLocks.skeletonKeyMaxUses.get())
-					.tab(TREASURE_ITEM_GROUP))
+					.tab(TREASURE_ITEM_GROUP), 5)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setBreakable(false)
 			.setCraftable(false));
 
 	public static RegistryObject<KeyItem> PILFERERS_LOCK_PICK = Registration.ITEMS.register("pilferers_lock_pick", 
 			() -> new PilferersLockPick(new Item.Properties()
-//					.durability(Config.SERVER.keysAndLocks.pilferersLockPickMaxUses.get())
-					.tab(TREASURE_ITEM_GROUP))
+					.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setBreakable(true)
 			.setCraftable(true)
@@ -213,8 +194,7 @@ public class TreasureItems {
 
 	public static RegistryObject<KeyItem> THIEFS_LOCK_PICK = Registration.ITEMS.register("thiefs_lock_pick", 
 			() -> new ThiefsLockPick(new Item.Properties()
-//					.durability(Config.SERVER.keysAndLocks.thiefsLockPickMaxUses.get())
-					.tab(TREASURE_ITEM_GROUP))
+					.tab(TREASURE_ITEM_GROUP), 10)
 			.setCategory(KeyLockCategory.ELEMENTAL)
 			.setBreakable(true)
 			.setCraftable(true)

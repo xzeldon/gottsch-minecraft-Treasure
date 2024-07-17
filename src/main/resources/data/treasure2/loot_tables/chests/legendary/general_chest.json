@@ -81,7 +81,7 @@
     },
     "entries" : [ {
       "type" : "loot_table",
-      "name" : "treasure2:pools/combat/rare",
+      "name" : "treasure2:pools/combat/legendary",
       "weight" : 1
     } ]
   }, {

@@ -17,19 +17,17 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import java.awt.TextComponent;
-import java.util.List;
-
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.treasure2.core.enums.Rarity;
 import mod.gottsch.forge.treasure2.core.registry.KeyLockRegistry;
 import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
 
 /**
  * 
@@ -38,12 +36,16 @@ import net.minecraft.world.level.Level;
  */
 public class SkeletonKey extends KeyItem {
 
+	public SkeletonKey(Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
 	/**
 	 * 
 	 * @param properties
 	 */
-	public SkeletonKey(Item.Properties properties) {
-		super(properties);
+	public SkeletonKey(Properties properties, int durability) {
+		super(properties, durability);
 		
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {

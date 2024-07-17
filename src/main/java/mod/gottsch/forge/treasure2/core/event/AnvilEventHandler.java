@@ -1,7 +1,7 @@
 /*
  * This file is part of  Treasure2.
  * Copyright (c) 2020 Mark Gottschling (gottsch)
- * 
+ *
  * All rights reserved.
  *
  * Treasure2 is free software: you can redistribute it and/or modify
@@ -26,18 +26,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
 
 /**
- * 
+ *
  * @author Mark Gottschling on Sep 6, 2020
  *
  */
 public class AnvilEventHandler {
-	
-	@EventBusSubscriber(modid = Treasure.MODID, bus = EventBusSubscriber.Bus.FORGE)
+
+	@Mod.EventBusSubscriber(modid = Treasure.MODID, bus = EventBusSubscriber.Bus.FORGE)
 	public static class RegistrationHandler {
 
 		private static final int MAX_DURABILITY = 100;
@@ -51,16 +52,16 @@ public class AnvilEventHandler {
 			if (leftStack.getItem() instanceof KeyItem
 					&& leftStack.getItem() == rightStack.getItem()
 					&& leftStack.getCapability(DURABILITY).isPresent()
-					&& leftStack.getCapability(DURABILITY).map(h -> !h.isInfinite()).orElse(true)					
+					&& leftStack.getCapability(DURABILITY).map(h -> !h.isInfinite()).orElse(true)
 					&& rightStack.getCapability(DURABILITY).isPresent()
 					&& rightStack.getCapability(DURABILITY).map(h -> !h.isInfinite()).orElse(true)
-					) {
+			) {
 
 				event.setCost(1);
 				LazyOptional<IDurabilityHandler> leftHandler = leftStack.getCapability(DURABILITY);
 				LazyOptional<IDurabilityHandler> rightHandler = rightStack.getCapability(DURABILITY);
-				int leftDurability = leftHandler.map(c -> c.getDurability()).orElse(leftStack.getMaxDamage());
-				int rightDurability = rightHandler.map(c -> c.getDurability()).orElse(rightStack.getMaxDamage());
+				int leftDurability = leftHandler.map(c -> c.durability(leftStack.getItem())).orElse(((KeyItem) leftStack.getItem()).getDurability());
+				int rightDurability = rightHandler.map(c -> c.durability(rightStack.getItem())).orElse(((KeyItem) rightStack.getItem()).getDurability());
 
 				int leftRemainingUses = leftDurability - leftStack.getDamageValue();
 				int rightRemainingUses = rightDurability - rightStack.getDamageValue();
@@ -84,7 +85,7 @@ public class AnvilEventHandler {
 					else {
 						outputHandler.ifPresent(cap -> cap.setDurability(Math.max(leftDurability, rightDurability)));
 					}
-					outputStack.setDamageValue(outputHandler.map(c -> c.getDurability()).orElse(leftStack.getMaxDamage()) - remainingUses);
+					outputStack.setDamageValue(outputHandler.map(c -> c.durability(leftStack.getItem())).orElse(((KeyItem)leftStack.getItem()).getDurability()) - remainingUses);
 				}
 				event.setOutput(outputStack);
 			}
