@@ -17,9 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import java.util.List;
-import java.util.Random;
-
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.treasure2.Treasure;
@@ -28,10 +25,12 @@ import mod.gottsch.forge.treasure2.core.registry.KeyLockRegistry;
 import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+
+import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -53,15 +52,20 @@ public class ThiefsLockPick extends KeyItem {
 	 * 
 	 * @param properties
 	 */
-	public ThiefsLockPick(Item.Properties properties) {
-		super(properties);
+	public ThiefsLockPick(Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	public ThiefsLockPick(Properties properties, int durability) {
+		super(properties, durability);
+
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			IRarity rarity = KeyLockRegistry.getRarityByLock(lock);
-			return 
+			return
 					(rarity == Rarity.COMMON ||
-					rarity == Rarity.UNCOMMON ||
-					rarity == Rarity.SCARCE);
+							rarity == Rarity.UNCOMMON ||
+							rarity == Rarity.SCARCE);
 		});
 	}
 
@@ -128,7 +132,6 @@ public class ThiefsLockPick extends KeyItem {
 		}
 		return false;
 	}
-
 
 	public ThiefsLockPick setSuccessProbability(double commonProbability, double uncommonProbability, double scarceProbability) {
 		setSuccessProbability(commonProbability);

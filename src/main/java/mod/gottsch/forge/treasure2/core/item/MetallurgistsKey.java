@@ -17,8 +17,6 @@
  */
 package mod.gottsch.forge.treasure2.core.item;
 
-import java.util.List;
-
 import mod.gottsch.forge.treasure2.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -27,35 +25,31 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 
 /**
- * 
+ *
  * @author Mark Gottschling on Jan 17, 2018
  *
  */
 public class MetallurgistsKey extends KeyItem {
 
 	public MetallurgistsKey(Item.Properties properties) {
-		super(properties);
+		this(properties, DEFAULT_MAX_USES);
+	}
+
+	public MetallurgistsKey(Item.Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			return lock.getCategory() == KeyLockCategory.METALS;
 		});
 	}
-	
-	/**
-	 * 
-	 * @param modID
-	 * @param name
-	 */
-//	@Deprecated
-//	public MetallurgistsKey(String modID, String name, Item.Properties properties) {
-//		super(modID, name, properties);
-//	}
-	
+
 	/**
 	 * Format: (Additions)
-	 * 
+	 *
 	 * Specials: [text] [color=gold]
 	 */
 	@SuppressWarnings("deprecation")
@@ -63,14 +57,12 @@ public class MetallurgistsKey extends KeyItem {
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
 	}
-	
+
 	@Override
 	public  void appendHoverSpecials(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flag) {
 		tooltip.add(
-				Component.translatable(LangUtil.tooltip("key_lock.specials"), 
-				ChatFormatting.GOLD + Component.translatable(LangUtil.tooltip("key_lock.metallurgists_key.specials")).getString())
-			);	
+				Component.translatable(LangUtil.tooltip("key_lock.specials"),
+						ChatFormatting.GOLD + Component.translatable(LangUtil.tooltip("key_lock.metallurgists_key.specials")).getString())
+		);
 	}
-
-
 }

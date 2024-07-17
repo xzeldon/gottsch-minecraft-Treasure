@@ -1,7 +1,7 @@
 /*
  * This file is part of  Treasure2.
  * Copyright (c) 2018 Mark Gottschling (gottsch)
- * 
+ *
  * All rights reserved.
  *
  * Treasure2 is free software: you can redistribute it and/or modify
@@ -18,13 +18,6 @@
  * along with Treasure2.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.treasure2.core.item;
-
-import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
-
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.Nullable;
 
 import mod.gottsch.forge.gottschcore.world.WorldInfo;
 import mod.gottsch.forge.treasure2.Treasure;
@@ -67,6 +60,12 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Optional;
+
+import static mod.gottsch.forge.treasure2.core.capability.TreasureCapabilities.DURABILITY;
+
 /**
  * @author Mark Gottschling on Mar 9, 2018
  *
@@ -74,7 +73,7 @@ import net.minecraftforge.network.NetworkHooks;
 public class KeyRingItem extends Item implements MenuProvider {
 
 	/**
-	 * 
+	 *
 	 * @param properties
 	 */
 	public KeyRingItem(Properties properties) {
@@ -88,7 +87,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
@@ -100,7 +99,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 	public InteractionResult useOn(UseOnContext context) {
 
 		// exit if on the client
-		if (WorldInfo.isClientSide(context.getLevel())) {			
+		if (WorldInfo.isClientSide(context.getLevel())) {
 			return InteractionResult.FAIL;
 		}
 
@@ -159,7 +158,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 								if (!state.getValue(AbstractTreasureChestBlock.DISCOVERED)) {
 									chestBlockEntity = ((AbstractTreasureChestBlock) block).discovered((AbstractTreasureChestBlockEntity) chestBlockEntity, state, context.getLevel(), chestPos, context.getPlayer());
 								}
-								
+
 								// update the client
 								chestBlockEntity.sendUpdates();
 
@@ -170,17 +169,17 @@ public class KeyRingItem extends Item implements MenuProvider {
 							IDurabilityHandler cap = keyStack.getCapability(DURABILITY).orElseThrow(IllegalStateException::new);
 							// TODO make into method in KeyItem
 							if (breakKey) {
-								if (!context.getPlayer().isCreative() && (key.isBreakable() ||  key.anyLockBreaksKey(chestBlockEntity.getLockStates(), key))  && Config.SERVER.keysAndLocks.enableKeyBreaks.get()) {									// this damage block is considering if a key has been merged with another key.
+								if (!context.getPlayer().isCreative() && (key.isBreakable() ||  key.anyLockBreaksKey(chestBlockEntity.getLockStates(), key))  && Config.SERVER.keysAndLocks.enableKeyBreaks.get()) {
 									// this damage block is considering if a key has been merged with another key.
 									// it is only 'breaking' 1 key's worth of damage
 									// ex k1(1/10d) + k2(0/10d) = k3(1/20d), only apply 9 damage
 									// so k3 = (10/20d) ie 1 key's worth damage was applied.
 									int damage = keyStack.getDamageValue() + (keyStack.getMaxDamage() - (keyStack.getDamageValue() % keyStack.getMaxDamage()));
 									keyStack.setDamageValue(damage);
-									if (keyStack.getDamageValue() >= cap.getDurability()) {
+									if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 										// break key;
 										keyStack.shrink(1);
-									}								
+									}
 
 									key.doKeyBreakEffects(context.getLevel(), context.getPlayer(), chestPos);
 
@@ -192,11 +191,11 @@ public class KeyRingItem extends Item implements MenuProvider {
 								}
 								else {
 									key.doKeyUnableToUnlockEffects(context.getLevel(), context.getPlayer(), chestPos);
-								}						
+								}
 							}
 							if (!context.getPlayer().isCreative() && key.isDamageable(keyStack) && !isKeyBroken) {
 								keyStack.setDamageValue(keyStack.getDamageValue() + 1);
-								if (keyStack.getDamageValue() >= cap.getDurability()) {
+								if (keyStack.getDamageValue() >= cap.durability(keyStack.getItem())) {
 									keyStack.shrink(1);
 								}
 							}
@@ -221,7 +220,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
 		// exit if on the client
-		if (WorldInfo.isClientSide(level)) {			
+		if (WorldInfo.isClientSide(level)) {
 			return InteractionResultHolder.fail(player.getItemInHand(hand));
 		}
 
@@ -232,20 +231,20 @@ public class KeyRingItem extends Item implements MenuProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param context
 	 * @param chestBlockEntity
 	 * @param lockState
 	 */
 	public void doUnlock(UseOnContext context, AbstractTreasureChestBlockEntity chestBlockEntity,	KeyItem key, LockState lockState) {
-		key.doUnlock(context, chestBlockEntity, lockState);	
+		key.doUnlock(context, chestBlockEntity, lockState);
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
-	public boolean onDroppedByPlayer(ItemStack stack, Player player) {		
+	public boolean onDroppedByPlayer(ItemStack stack, Player player) {
 		// NOTE only works on 'Q' press, not mouse drag and drop
 		IKeyRingHandler cap = stack.getCapability(TreasureCapabilities.KEY_RING).orElseThrow(IllegalStateException::new);
 
@@ -258,7 +257,7 @@ public class KeyRingItem extends Item implements MenuProvider {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	@Override
 	public AbstractContainerMenu createMenu(int windowId, Inventory playerInventory, Player player) {
@@ -301,13 +300,13 @@ public class KeyRingItem extends Item implements MenuProvider {
 			dataTag = dataHandler.get().save();
 		}
 
-		CompoundTag itemTag = new CompoundTag();		
+		CompoundTag itemTag = new CompoundTag();
 		Optional<IItemHandler> itemHandler = stack.getCapability(TreasureCapabilities.KEY_RING_INV).map(h -> h);
 		if (itemHandler.isPresent()) {
 			itemTag =((ItemStackHandler) itemHandler.get()).serializeNBT();
 		}
 
-		CompoundTag tag = new CompoundTag();		
+		CompoundTag tag = new CompoundTag();
 		tag.put("keyRing", dataTag);
 		tag.put("inventory", itemTag);
 		return tag;

@@ -28,18 +28,22 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 /**
- * 
+ *
  * @author Mark Gottschling on Sep 11, 2020
  *
  */
 public class LightningKey extends KeyItem {
 
+	public LightningKey(Item.Properties properties) {
+		this(properties, DEFAULT_MAX_USES);
+	}
+
 	/**
-	 * 
+	 *
 	 * @param properties
 	 */
-	public LightningKey(Item.Properties properties) {
-		super(properties);
+	public LightningKey(Item.Properties properties, int durability) {
+		super(properties, durability);
 		// add the default fitsLock predicates
 		addFitsLock(lock -> {
 			return lock.getCategory() == KeyLockCategory.ELEMENTAL;
@@ -48,7 +52,7 @@ public class LightningKey extends KeyItem {
 
 	/**
 	 * Format: (Additions)
-	 * 
+	 *
 	 * Specials: [text] [color=gold]
 	 */
 	@SuppressWarnings("deprecation")
@@ -60,8 +64,8 @@ public class LightningKey extends KeyItem {
 	@Override
 	public  void appendHoverSpecials(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		tooltip.add(
-				Component.translatable(LangUtil.tooltip("key_lock.specials"), 
+				Component.translatable(LangUtil.tooltip("key_lock.specials"),
 						ChatFormatting.GOLD + Component.translatable(LangUtil.tooltip("key_lock.lightning_key.specials")).getString())
-				);	
+		);
 	}
 }

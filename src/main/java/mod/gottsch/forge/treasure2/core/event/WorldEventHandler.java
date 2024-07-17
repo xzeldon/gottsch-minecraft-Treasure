@@ -98,4 +98,12 @@ public class WorldEventHandler {
 			}
 		}
 	}
+
+	public static boolean isServerLoaded() {
+		return isLoaded;
+	}
+
+	public static boolean isClientLoaded() {
+		return isClientLoaded;
+	}
 }

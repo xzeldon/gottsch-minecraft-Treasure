@@ -334,34 +334,50 @@ public final class TreasureLootTableRegistry {
 
 	/**
 	 * Only load once - not per  registered mod.
-	 * @param modID
+	 * @param modID_xxx
 	 */
 	public static void loadDataPacks(String modID_xxx) {
 		String worldSaveFolderPathName = getWorldSaveFolder().toString();
 
-		// load/register exploded datapacks from world save folder
-		LOOT_TABLES_GROUPS.forEach(category -> {
-			List<Path> lootTablePaths;
-			// build the path
-			Path folderPath = Paths.get(worldSaveFolderPathName, DATAPACKS_LOOT_TABLES_ROOT, category.getValue());
-			try {
-				lootTablePaths = ModUtil.getPathsFromFlatDatapacks(folderPath);
-
-				for (Path path : lootTablePaths) {
-					Treasure.LOGGER.debug("loot table path -> {}", path);
-					// load the shell from the jar
-					Optional<LootTableShell> shell = loadFromFileSystem(path);
-					// extra step - strip the beginning path from the path, so it is just data/treasure2/...
-					String p = path.toString().replace(worldSaveFolderPathName, "");
-					// register
-					registerDatapacksLootTable(category, Paths.get(p), shell);
+		List<Path> datapackFolders = new ArrayList<>();
+		// get all .zip files in the folder (non-recursive)
+		try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(worldSaveFolderPathName))) {
+			for (Path folderPath : stream) {
+				Treasure.LOGGER.debug("path -> {}", folderPath);
+				if (Files.isDirectory(folderPath, new LinkOption[] {})) {
+					datapackFolders.add(folderPath.getFileName());
 				}
-
-			} catch(NoSuchFileException e) {
-				// silently sallow exception
-			} catch (Exception e) {
-				Treasure.LOGGER.error("An error occurred attempting to register a loot table from the world save datapacks folder: ", e);
 			}
+		} catch(Exception e) {
+			Treasure.LOGGER.error("error: unable to load datapack:", e);
+		}
+
+		// load/register exploded datapacks from world save folder
+		Treasure.LOGGER.debug("datapackFolders size -> {}", datapackFolders.size());
+		datapackFolders.forEach(topLevelPath -> {
+			LOOT_TABLES_GROUPS.forEach(category -> {
+				List<Path> lootTablePaths;
+				// build the path
+				Path folderPath = Paths.get(worldSaveFolderPathName, topLevelPath.toString(), DATAPACKS_LOOT_TABLES_ROOT, category.getValue());
+				try {
+					lootTablePaths = ModUtil.getPathsFromFlatDatapacks(folderPath);
+
+					for (Path path : lootTablePaths) {
+						Treasure.LOGGER.debug("exploded datapack loot table path -> {}", path);
+						// load the shell from the jar
+						Optional<LootTableShell> shell = loadFromFileSystem(path);
+						// extra step - strip the beginning path from the path, so it is just data/treasure2/...
+						String p = path.toString().replace(Paths.get(worldSaveFolderPathName, topLevelPath.toString()).toString(), "");
+						// register
+						registerDatapacksLootTable(category, Paths.get(p), shell);
+					}
+
+				} catch (NoSuchFileException e) {
+					// silently sallow exception
+				} catch (Exception e) {
+					Treasure.LOGGER.error("An error occurred attempting to register a loot table from the world save datapacks folder: ", e);
+				}
+			});
 		});
 
 		/*
