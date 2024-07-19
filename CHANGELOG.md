@@ -5,13 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.4] - 2024-07-18
+
+### Changed
+
+- Fixed add patchouli guide book on first use.
+- Added condition to KeyItem.isDamageable() to prevent exception due to mixin use.
+
+## [3.8.3] - 2024-06-27
+
+### Changed
+
+- Added the Falling blocks names to the language file.
+
 ## [3.8.2] - 2024-05-20
 
 ### Changed
 
--Fixed crafted Keys from only having 0 durability/usage on server.
--Fixed reading datapacks in flat/exploded directory format.
--KeyItem now takes a default durability value in the constructor.
+- Fixed crafted Keys from only having 0 durability/usage on server.
+- Fixed reading datapacks in flat/exploded directory format.
+- Fixed high-level loot tables to include high-level combat items.
+- KeyItem now takes a default durability value in the constructor.
 
 ## [3.8.1] - 2024-02-15
 
