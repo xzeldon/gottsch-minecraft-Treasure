@@ -1,7 +1,7 @@
 /*
  * This file is part of  Treasure2.
  * Copyright (c) 2021, Mark Gottschling (gottsch)
- * 
+ *
  * All rights reserved.
  *
  * Treasure2 is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
- * 
+ *
  * @author Mark Gottschling on Dec 19, 2021
  *
  */
@@ -60,7 +60,7 @@ public class CharmEventHandler {
 	private IEquipmentCharmHandler equipmentCharmHandler;
 
 	/**
-	 * 
+	 *
 	 * @param handler
 	 */
 	public CharmEventHandler(IEquipmentCharmHandler handler) {
@@ -68,7 +68,7 @@ public class CharmEventHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 */
 	@SubscribeEvent
@@ -78,7 +78,7 @@ public class CharmEventHandler {
 		}
 
 		// do something to player every update tick:
-		if (event.getEntity() instanceof EntityPlayer) {
+		if (event.getEntity() instanceof EntityPlayerMP) {
 
 			// get the player
 			EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
@@ -87,7 +87,7 @@ public class CharmEventHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 */
 	@SubscribeEvent
@@ -97,15 +97,15 @@ public class CharmEventHandler {
 		}
 
 		// do something to player every update tick:
-		if (event.getEntity() instanceof EntityPlayer) {
+		if (event.getEntity() instanceof EntityPlayerMP) {
 			// get the player
 			EntityPlayerMP player = (EntityPlayerMP) event.getEntity();
 			processCharms(event, player);
-		}		
+		}
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 */
 	@SubscribeEvent
@@ -116,10 +116,10 @@ public class CharmEventHandler {
 
 		// if player is source or destination of hurt
 		EntityPlayerMP player = null;
-		if (event.getSource().getTrueSource() instanceof EntityPlayer) {
+		if (event.getSource().getTrueSource() instanceof EntityPlayerMP) {
 			player = (EntityPlayerMP) event.getSource().getTrueSource();
 		}
-		else if (event.getEntityLiving() instanceof  EntityPlayer) {
+		else if (event.getEntityLiving() instanceof  EntityPlayerMP) {
 			player = (EntityPlayerMP) event.getEntityLiving();
 		}
 
@@ -127,10 +127,10 @@ public class CharmEventHandler {
 			// get the player
 			processCharms(event, player);
 		}
-	}	
+	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 */
 	@SubscribeEvent
@@ -157,7 +157,7 @@ public class CharmEventHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 * @param player
 	 */
@@ -202,7 +202,7 @@ public class CharmEventHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 * @param hand
 	 * @param itemStack
@@ -229,7 +229,7 @@ public class CharmEventHandler {
 						$.capability = cap;
 						$.type = type;
 						$.index = index.get();
-						$.entity = entity;						
+						$.entity = entity;
 					}).build();
 					contexts.add(context);
 				}
@@ -239,7 +239,7 @@ public class CharmEventHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param event
 	 * @param player
 	 * @param contexts
@@ -270,21 +270,21 @@ public class CharmEventHandler {
 
 				// send state message to client
 				CharmMessageToClient message = new CharmMessageToClient(player.getUUID(player.getGameProfile()).toString(), context);
-				//				Treasure.logger.debug("Message to client -> {}", message);
+				//              Treasure.logger.debug("Message to client -> {}", message);
 				Treasure.simpleNetworkWrapper.sendTo(message, player);
 			}
 
 			// remove if innate and empty
-//			if (context.getType() ==InventoryType.INNATE
-//					&& context.getEntity().getMana() <= 0.0 && context.getCapability().isBindable()) {
-//				Treasure.logger.debug("charm is empty -> remove");
-//				// TODO call cap.remove() -> recalcs highestLevel
-//				// locate the charm from context and remove
-//				context.getCapability().remove(context.getType(), context.getIndex());
-//			}
+//          if (context.getType() ==InventoryType.INNATE
+//                  && context.getEntity().getMana() <= 0.0 && context.getCapability().isBindable()) {
+//              Treasure.logger.debug("charm is empty -> remove");
+//              // TODO call cap.remove() -> recalcs highestLevel
+//              // locate the charm from context and remove
+//              context.getCapability().remove(context.getType(), context.getIndex());
+//          }
 
 			// remove if mana AND recharges are empty and the capability is bindable ie. charm, not adornment
-			if (context.getCapability().isBindable() 
+			if (context.getCapability().isBindable()
 					&& context.getEntity().getRecharges() <= 0
 					&& context.getEntity().getMana() <= 0.0 ) {
 				Treasure.LOGGER.debug("charm is empty without any recharges -> remove");
